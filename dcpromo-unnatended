@@ -1,0 +1,19 @@
+@echo off
+
+set /p dominio=Introduce el nombre del dominio:
+set /p ext=Introduce extension (Ej:com,es,ga):
+echo [DCINSTALL] >> dcpromo-answer.txt
+echo ReplicaorNewDomain=Domain >> dcpromo-answer.txt
+echo NewDomain=Forest >> dcpromo-answer.txt
+echo ForestLevel=3 >> dcpromo-answer.txt
+echo DomainLevel=3 >> dcpromo-answer.txt
+echo DomainNetBiosName=%dominio% >> dcpromo-answer.txt
+echo NewDomainDNSName=%dominio%.%ext% >> dcpromo-answer.txt
+echo RebootOnCompletion=Yes >> dcpromo-answer.txt
+echo SiteName=”%dominio%” >> dcpromo-answer.txt
+echo InstallDNS=Yes >> dcpromo-answer.txt
+echo SafeModeAdminPassword=abc123. >> dcpromo-answer.txt
+
+
+dcpromo.exe /unattend:dcpromo-answer.txt
+del dcpromo-answer.txt
